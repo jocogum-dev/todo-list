@@ -3,26 +3,33 @@
 import { Todo } from "@/lib/types"
 import { SubmitHandler, useForm } from "react-hook-form"
 
+
 export default function TodoForm() {
     const {register, handleSubmit} = useForm<Todo>()
-    const onSubmitTodo: SubmitHandler<Todo> = (data) => console.log(data)
-
+    const onSubmitTodo: SubmitHandler<Todo> = async (data: Todo) => {
+        const response = await fetch('api/todos', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        }
+    
 
     return (
-        <form onSubmit={handleSubmit(onSubmitTodo)}>
-            <div>
+        <form className="border py-2" onSubmit={handleSubmit(onSubmitTodo)}>
+            <div className="flex align-middlen- gap-5">
                 <label>Title</label>
-                <input {...register('title')} />
+                <input className="border rounded-xl" {...register('title')} />
             </div>
-            <div>
+            <div className="flex align-middlen- gap-5">
                 <label>Description</label>
-                <input type="text" {...register('description')} />
+                <input className="border rounded-xl" type="text" {...register('description')} />
             </div>
-            <div>
+            <div className="flex align-middlen- gap-5">
                 <input type="checkbox" {...register('isCompleted')} />
                 <label>Completed</label>
             </div>
-        <button>Submit</button>
+        <button className="border rounded-xl px-4 py-2">Submit</button>
         </form>
     )
 }

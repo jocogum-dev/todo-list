@@ -1,5 +1,5 @@
 'use client'
-import CreateTodo from "@/components/CreateTodo"
+
 import TodoForm from "@/components/TodoForm"
 import { Todo } from "@prisma/client"
 import useSWR from "swr"
@@ -14,11 +14,10 @@ export default function Home() {
       <ul className="mx-4 my-2">
         {todoList.map((todo: Todo)=>(
           <li key={todo.id}>
-            {todo.title} - {todo.description} - {new Date(todo.createdAt).toLocaleString()}
+            {todo.title} - {todo.description} - {todo.isCompleted ? 'completed' : 'not completed'} - {new Date(todo.createdAt).toLocaleString()}
           </li>
         ))}
       </ul>
-      <CreateTodo />
 
       <TodoForm />
     </div>
