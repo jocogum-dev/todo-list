@@ -1,5 +1,6 @@
 'use client'
 import CreateTodo from "@/components/CreateTodo"
+import TodoForm from "@/components/TodoForm"
 import { Todo } from "@prisma/client"
 import useSWR from "swr"
 
@@ -18,6 +19,8 @@ export default function Home() {
         ))}
       </ul>
       <CreateTodo />
+
+      <TodoForm />
     </div>
     
     
