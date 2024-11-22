@@ -43,7 +43,7 @@ export default function TodoTable({ todoList } : {todoList: Todo[]}) {
                 </td>
                 <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                     <span className="inline-flex overflow-hidden rounded-md border bg-white shadow-sm">
-                        <EditTodoButton />
+                        <EditTodoButton todoId={todo.id} />
                         <DeleteTodoButton todoId={todo.id} />
                     </span>
                 </td>

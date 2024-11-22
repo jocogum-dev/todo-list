@@ -1,6 +1,11 @@
-export default function EditTodoButton() {
+export default function EditTodoButton({todoId} : {todoId: number}) {
+    const handleClick = () => {
+        console.log("clicked edit", todoId);
+    }
+
     return (
         <button
+            onClick={handleClick}
             className="inline-block border-e p-3 text-gray-700 hover:bg-gray-50 focus:relative"
             title="Edit Product"
         >

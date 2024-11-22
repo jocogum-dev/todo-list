@@ -1,6 +1,15 @@
 export default function DeleteTodoButton({todoId}: {todoId: number}) {
+
+    const handleClick= async (todoId: number) => {
+        const data = await fetch(`api/todos?id=${todoId}`, {
+            method: "DELETE",
+        })
+        const response = await data.json()
+        return response;
+    }
+    
     return (
-        <button
+        <button onClick={() => handleClick(todoId)}
             className="inline-block p-3 text-gray-700 hover:bg-gray-50 focus:relative"
             title="Delete Product"
         >

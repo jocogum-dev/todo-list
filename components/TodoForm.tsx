@@ -8,12 +8,14 @@ import { mutate } from "swr"
 
 export default function TodoForm() {
     const {register, handleSubmit, reset, formState: {isSubmitSuccessful, isSubmitting}} = useForm<Todo>()
-    const onSubmitTodo: SubmitHandler<Todo> = async (data) => {
-        const response = await fetch('api/todos', {
+    const onSubmitTodo: SubmitHandler<Todo> = async (todoData) => {
+        const data = await fetch('api/todos', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(data)
+            body: JSON.stringify(todoData)
         })
+        const response = await data.json();
+        return response;
     }
 
     useEffect(() => {
@@ -65,6 +67,7 @@ export default function TodoForm() {
 
                 <div className="flex items-center justify-between">
                     <button
+                        disabled={isSubmitting}
                         className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
                     >
                         Submit
